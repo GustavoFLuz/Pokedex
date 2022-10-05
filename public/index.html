@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pokedex</title>
+        <link rel="stylesheet" href="./styles/css/styles.css">
+    </head>
+
+    <body>
+        <div class="bg">
+            <div id="bg-cloud-1">
+                <div class="cloud"></div>
+            </div>
+            <div id="bg-cloud-2">
+                <div class="cloud"></div>
+            </div>
+            <div id="bg-cloud-3">
+                <div class="cloud"></div>
+            </div>
+            <div id="bg-cloud-4">
+                <div class="cloud"></div>
+            </div>
+        </div>
+        <div id="pokedex">
+            <div id="left-container">
+                <div class="pokedex-bg">
+                    <div class="svg-bg">
+                        <img src="./assets/svg/left-container-bg.svg" class="depth">
+                        <img src="./assets/svg/left-container-bg.svg" class="container">
+                        <div class="screen">
+                            <div id="pokemon-name"></div>
+                            <div id="zoom-in"><img src="./assets/svg/zoom-in.svg" /></div>
+                            <ul id="main-display"></ul>
+                            <div id="loading-main-display"></div>
+                        </div>
+                        <svg viewBox="0 0 400 615" width="400" height="615" xmlns="http://www.w3.org/2000/svg">
+                            <clipPath id="screenLeft">
+                                <path d="M 340 605 L 265 605 C 265 605 245 605 225 590 
+                                L 190 565 C 175 555 160 545 135 545 L 10 545 
+                                L 10 155 C 10 155 10 140 35 140 L 340 140 
+                                L 340 575 L 340 605 Z" transform="matrix(0.92, 0, 0, -0.95, 15, 690)"></path>
+                            </clipPath>
+                        </svg>
+                    </div>
+                    <div class="top">
+                        <div class="top-lens"></div>
+                        <div class="top-leds"></div>
+                    </div>
+                </div>
+                <div id="bottom-btns">
+                    <button id="left-btn"></button>
+                    <button id="right-btn"></button>
+                </div>
+            </div>
+            <div id="right-container">
+                <div class="pokedex-bg">
+                    <div class="svg-bg">
+                        <img src="./assets/svg/right-container-bg.svg" class="depth">
+                        <img src="./assets/svg/right-container-bg.svg" class="container">
+                        <div class="screen">
+                            <div id="secondary-display">
+                                <ul id="tab-selector">
+                                    <li id="slider"></li>
+                                    <li><img src="./assets/svg/info.svg" /></li>
+                                    <li><img src="./assets/svg/filter.svg" /></li>
+                                    <li><img src="./assets/svg/list.svg" /></li>
+                                </ul>
+                                <div class="content">
+                                    <div class="active" id="pokemon-info">
+                                        <div class="block">
+                                            <div class="header">
+                                                <img class="pokemon-sprite" src="">
+                                                <h3 class="pokemon-name"></h3>
+                                            </div>
+                                            <div class="pokemon-types"></div>
+                                            <div class="pokemon-desc">
+                                                <div class="title"></div>
+                                                <div class="desc"></div>
+                                            </div>
+                                        </div>
+                                        <div class="block">
+                                            <div class="pokemon-abilities">
+                                                <h2> Abilities </h2>
+                                                <div class="abilities-selection"></div>
+                                                <div class="abilities-info">
+                                                    <ul></ul>
+                                                </div>
+                                            </div>
+                                            <div class="pokemon-stats">
+                                                <h2> Stats </h2>
+                                                <span class="level-show">Level 100</span>
+                                                <select class="select-nature">
+                                                    <option value="Hardy">Nature &darr;</option>
+                                                </select>
+                                                <div>
+                                                    <div class="stats-sliders">
+                                                        <div><span class="stat-name">HP </span>
+                                                            <progress id="stat_hp"max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                        <div><span class="stat-name">ATK </span>
+                                                            <progress id="stat_attack" max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                        <div><span class="stat-name">DEF </span>
+                                                            <progress id="stat_defense" max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                        <div><span class="stat-name">SpATK</span>
+                                                            <progress id="stat_special-attack" max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                        <div><span class="stat-name">SpDEF</span>
+                                                            <progress id="stat_special-defense" max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                        <div><span class="stat-name">SPE </span>
+                                                            <progress id="stat_speed" max="500" value="0"></progress>
+                                                            <span class="value"></span></div>
+                                                    </div>
+                                                    <div class="stats-config">
+                                                        <div class="level"><input type="range" id="level-range" min="1" max="100" value="100"></div>
+                                                        <table id="iv-ev-input">
+                                                            <thead>
+                                                                <th> </th>
+                                                                <th>HP</th>
+                                                                <th>ATK</th>
+                                                                <th>DEF</th>
+                                                                <th>SpATK</th>
+                                                                <th>SpDEF</th>
+                                                                <th>SPE</th>
+                                                            </thead>
+
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>IV</td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_hp"></td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_attack"></td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_defense"></td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_special-attack"></td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_special-defense"></td>
+                                                                    <td><input type="number" value='0' min='0' class="iv_speed"></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>EV</td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_hp"></td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_attack"></td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_defense"></td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_special-attack"></td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_special-defense"></td>
+                                                                    <td><input type="number" value='0' min='0' class="ev_speed"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="block"></div>
+                                    </div>
+                                    <div class=""></div>
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 400 615" width="400" height="615" xmlns="http://www.w3.org/2000/svg">
+                            <clipPath id="screenRight">
+                                <path d="M 340 605 L 265 605 C 265 605 245 605 225 590 
+                                L 190 565 C 175 555 160 545 135 545 L 10 545 
+                                L 10 115 C 10 115 10 100 35 100 L 340 100 
+                                L 340 575 L 340 605 Z" transform="matrix(-0.92, 0, 0, -0.95, 335, 690)"></path>
+                            </clipPath>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script type="module" src="./scripts/main.js"></script>
+    </body>
+
+</html>

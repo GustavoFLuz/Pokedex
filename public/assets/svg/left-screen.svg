@@ -1,0 +1,8 @@
+<svg width="400" height="615" xmlns="http://www.w3.org/2000/svg">
+    <path style="fill: transparent; stroke: #000;"
+        d="M 340 605 L 265 605 C 265 605 245 605 225 590 
+        L 190 565 C 175 555 160 545 135 545 L 10 545 
+        L 10 155 C 10 155 10 140 35 140 L 340 140 
+        L 340 575 L 340 605 Z"
+        transform="matrix(0.92, 0, 0, -0.95, 15, 690)"></path>
+</svg>

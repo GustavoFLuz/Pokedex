@@ -1,0 +1,8 @@
+<svg viewBox="0 0 400 615" width="400" height="615" xmlns="http://www.w3.org/2000/svg">
+    <path style="fill: #c30928; stroke: #000;"
+        d="M 350 615 L 260 615 C 260 615 240 615 220 600 L 180 570 C 180 570 160 555 130 555 L 0 555 L 0 110 C 0 110 0 90 20 90 L 350 90 L 350 615 Z"
+        transform="matrix(-1, 0, 0, -1, 350, 705)"></path>
+    <path style="fill: #DC0A2D; stroke: #000;"
+        d="M 340 605 L 265 605 C 265 605 245 605 225 590 L 190 565 C 175 555 160 545 135 545 L 10 545 L 10 115 C 10 115 10 100 35 100 L 340 100 L 340 575 L 340 605 Z"
+        transform="matrix(-1, 0, 0, -1, 350, 705)"></path>
+</svg>

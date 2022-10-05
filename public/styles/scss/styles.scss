@@ -1,0 +1,100 @@
+@import "./pokedex";
+
+:root * {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #5CA2C6;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	user-select: none;
+}
+
+.bg {
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+
+	&>* {
+		z-index: -10;
+		position: absolute;
+	}
+}
+
+.cloud {
+	width: var(--cloud-size);
+	aspect-ratio: 3;
+	background: #f2f9fe;
+	background: -webkit-linear-gradient(top, #f2f9fe 0%, #a6c9db 100%);
+	border-radius: calc(var(--cloud-size)/3.5);
+	position: relative;
+
+	&:after,
+	&:before {
+		content: '';
+		position: absolute;
+		background: #f2f9fe;
+		z-index: -10
+	}
+
+	&:after {
+		width: calc(var(--cloud-size)/3.5);
+		height: calc(var(--cloud-size)/3.5);
+		top: calc(var(--cloud-size)/-7);
+		left: calc(var(--cloud-size)/7);
+		border-radius: 50%;
+	}
+
+	&:before {
+		width: 50%;
+		aspect-ratio: 1;
+		top: calc(var(--cloud-size)/-4);
+		right: calc(var(--cloud-size)/7);
+		border-radius: 60%;
+	}
+}
+
+@mixin moveCloud($start, $end, $interval, $name) {
+	animation: $interval $name infinite alternate ease-in-out;
+
+	@keyframes #{$name} {
+		from {
+			left: $start;
+		}
+
+		to {
+			left: $end;
+		}
+	}
+}
+
+#bg-cloud-1 {
+	@include moveCloud(95%, 85%, 6s, "cloud1");
+	--cloud-size: 150px;
+	top: 50%;
+}
+
+#bg-cloud-2 {
+	@include moveCloud(10%, 30%, 10s, "cloud2");
+	--cloud-size: 200px;
+	top: 20%;
+}
+
+#bg-cloud-3 {
+	@include moveCloud(110%, 75%, 16s, "cloud3");
+	--cloud-size: 100px;
+	top: 80%;
+}
+
+#bg-cloud-4 {
+	@include moveCloud(25%, 3%, 9s, "cloud4");
+	--cloud-size: 150px;
+	top: 40%;
+}

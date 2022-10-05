@@ -1,0 +1,19 @@
+<svg viewBox="0 0 400 615" width="400" height="615" xmlns="http://www.w3.org/2000/svg">
+        <path style="fill: #aa0823; stroke: #000;"
+                d="M 20 0 L 380 0 C 380 0 400 0 400 20 L 400 595 C 400 595 400 615 380 615 L 20 615 C 20 615 0 615 0 595 L 0 20 C 0 20 0 0 20 0">
+        </path><!-- Container -->
+        <path style="fill: #e21235; stroke: #000;"
+                d="M 20 0 L 380 0 C 380 0 400 0 400 20 L 400 90 L 260 90 C 260 90 240 90 220 105 L 180 135 C 180 135 160 150 130 150 L 0 150 L 0 20 C 0 20 0 0 20 0 Z">
+        </path>
+        <!--Top part-->
+        <path style="fill: #DC0A2D; stroke: #000;"
+                d="M 340 100 L 265 100 C 265 100 245 100 225 115 L 190 140 C 175 150 160 160 135 160 L 10 160 L 10 590 C 10 590 10 605 35 605 L 340 605 L 340 130 L 340 100 Z">
+        </path><!-- Frame -->
+
+        <g>
+                <!-- Side bar -->
+                <path style="fill: #e21235; stroke: #000;" d="M 400 90 L 350 90 L 350 615 L 400 615 Z"></path>
+                <path style="fill: none; stroke: #0002; stroke-width:10" d="M 350 500 L 400 500"></path>
+                <path style="fill: none; stroke: #0002; stroke-width:10" d="M 350 180 L 400 180"></path>
+        </g>
+</svg>
