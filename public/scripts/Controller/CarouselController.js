@@ -1,4 +1,5 @@
 import PokemonController from './PokemonController.js';
+import main from '../main.js';
 import { inRangeId } from '../Helper/helper.js';
 import Carousel from '../View/Carousel.js'
 export class CarouselController {
@@ -10,13 +11,13 @@ export class CarouselController {
     }
     move(direction){
         this.getNewPokemon(direction).then(pokemon=>{
-            PokemonController.selectedId = this.carousel.move(direction, pokemon);
+            this.carousel.move(direction, pokemon);
         })
     }
     async getNewPokemon(direction) {
         let after = direction=="Right"?1:-1;
         return new Promise(resolve => {
-            let newId = PokemonController.selectedId + (after * 3);
+            let newId = main.selectedId + (after * 3);
             resolve(inRangeId(newId, 0)?PokemonController.getPokemon(newId):null)
         }).then(pokemon=>{
                 if(after==1){
@@ -32,10 +33,10 @@ export class CarouselController {
     load(input){
         let id = parseInt(input.value);
         if(!inRangeId(id, 0)){
-            input.value = PokemonController.selectedId;
+            input.value = main.selectedId;
             return;
         }
-        PokemonController.selectedId = id;
+        main.selectedId = id;
         this.carousel.enableLoading(true);
         Promise.all(inRangeId(id).map(item=>PokemonController.getPokemon(item)))
             .then(pokemon=>this.pokemonList = pokemon)

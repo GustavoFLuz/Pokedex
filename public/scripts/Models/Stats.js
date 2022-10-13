@@ -9,8 +9,7 @@ export default class Stats{
         this['special-defense'] =   basestats['special-defense'];
         this['speed'] =             basestats['speed'];
     }
-    getStats(nature, level, evs, ivs){
-        let natureObj = PokemonController.natures[nature]
+    getStats(natureObj, level, evs, ivs){
         return [
             {name:'hp',value:               this.getHP  ('hp',             level,            evs['hp'],             ivs['hp'])},
             {name:'attack',value:           this.getStat('attack',         natureObj, level, evs['attack'],         ivs['attack'])},

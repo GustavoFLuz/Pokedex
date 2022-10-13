@@ -1,4 +1,5 @@
-import { ButtonEffects } from '../View/Buttons.js'
+import main from '../main.js';
+import { Buttons } from '../View/Buttons.js'
 import { inRangeId, emptyImage } from '../Helper/helper.js';
 import PokemonController from '../Controller/PokemonController.js';
 export default class Carousel {
@@ -8,12 +9,12 @@ export default class Carousel {
         this.loading = $('#loading-main-display')
         this.pokemonName = $('#pokemon-name');
         this.displayNames = null;
-        this.buttons = new ButtonEffects();
+        this.buttons = new Buttons();
     }
     init(pokemonList) {
         
         this.list.find('li').remove();
-        PokemonController.selectedId = pokemonList[2].id;
+        main.selectedId = pokemonList[2].id;
         pokemonList.forEach((pokemon, index) => {
             this.list.append($(`<li class="displayPokemon${index}"> <img src="${pokemon ? pokemon.sprite.main:emptyImage}"/></li>`))
         })
@@ -29,23 +30,18 @@ export default class Carousel {
     move(direction, newPokemonList) {
         this.displayLi.addClass('moving' + direction)
         this.displayNames.addClass('moving' + direction)
-        if (direction == 'Left') PokemonController.selectedId--;
-        if (direction == 'Right') PokemonController.selectedId++;
         setTimeout(() => {
             this.displayLi.removeClass('moving' + direction)
             this.displayNames.removeClass('moving' + direction)
-            
-            this.buttons.enabled(inRangeId(PokemonController.selectedId, -1), inRangeId(PokemonController.selectedId, 1))
             this.update(newPokemonList)
+            this.buttons.enabled(inRangeId(main.selectedId, -1), inRangeId(main.selectedId, 1))
         }, 500)
-        return PokemonController.selectedId;
     }
     update(pokemonList){
-        PokemonController.selectedId = pokemonList[2].id;
+        main.selectedId = pokemonList[2].id;
         this.displayLi.each((index, li)=>{
             let img = $(li).find('img')
             let pokemon = pokemonList[index];
-
             img.attr('src', pokemon?pokemon.sprite.main:emptyImage)
         })
         this.displayNames.each((index, div)=>{
@@ -54,7 +50,6 @@ export default class Carousel {
             $(div).find('span').text(pokemon?`. ${pokemon.name}`:'');
         })
         this.enableLoading(false)
-        return PokemonController.selectedId;
     }
     enableLoading(enable){
         if(enable){

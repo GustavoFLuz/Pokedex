@@ -1,4 +1,4 @@
-import API from "./API.js"
+import API from "../Api/API.js"
 
 import Pokemon from "../Models/Pokemon.js"
 import Type from "../Models/Type.js"
@@ -6,81 +6,81 @@ import Ability from "../Models/Ability.js";
 import Nature from "../Models/Nature.js";
 
 import PokemonSpecies from "../Models/PokemonSpecies.js";
-import { updatePannel } from "../main.js";
-import { getIdFromUrl, handleName } from "../Helper/helper.js";
+import { handleName } from "../Helper/helper.js";
+class PokemonController{
+    static instance = null;
 
-export default class PokemonController{
-    static list = [];
-    static speciesList = [];
-    static selectedPokemonId = 1;
-    static types = [];
-    static abilities = [];
-    static natures = [];
+    constructor(){
+        this.api = API.getInstance();
+        this.api.preload();
+    }
 
+    static getInstance(){
+        if(PokemonController.instance==null) return new PokemonController();
+        return PokemonController.instance;
+    }
 
-    static getPokemon(id){
+    getPokemon(id){
         if(id<0) return null;
         return new Promise(async (resolve, reject)=>{
-            if(PokemonController.list[id] !=undefined) 
-                return resolve(PokemonController.list[id]);
-                var data = await API.getPokemon(id);
-                var species = await PokemonController.getPokemonSpecies(id)
-                var abilities = await PokemonController.getPokemonAbilities(data.abilities);
-            PokemonController.list[id] = new Pokemon(data, species, abilities);
-            //console.log(PokemonController.list[id])
-            resolve(PokemonController.list[id]);
+            var data = await this.api.getPokemon(id);
+            var species = await this.getPokemonSpecies(id)
+            var abilities = await this.getPokemonAbilities(data.abilities);
+            var pokemon = new Pokemon(data, species, abilities);
+            resolve(pokemon);
         })
     }
 
-    static getPokemonSpecies(id){
+    getPokemonSpecies(id){
         if(id<0) return null;
         return new Promise(async (resolve, reject)=>{
-            if(PokemonController.speciesList[id] !=undefined) 
-                return resolve(PokemonController.list[id]);
-            var data = await API.getPokemonSpecies(id);
-            PokemonController.speciesList[id] = new PokemonSpecies(data);
-            resolve(PokemonController.speciesList[id]);
+            var data = await this.api.getPokemonSpecies(id);
+            var species = new PokemonSpecies(data);
+            resolve(species);
         })
     }
 
-    static getPokemonTypes(){
-        return API.getTypes().then(data=>{
-            return Promise.all(data.results.map(type=>API.getTypesInfo(type.name)))
-                .then(typesInfo=>typesInfo.forEach((obj=>{
-                    let type = new Type(obj)
-                    PokemonController.types[type.name] = type.info;
-                })))
-        });
+    getPokemonType(id){
+        if(id<0) return null;
+        return new Promise(async (resolve, reject)=>{
+            var data = await this.api.getType(id);
+            var type = new Type(data);
+            resolve(type);
+        })
     }
 
-    static getPokemonAbilities(abilitiesData){
-        return Promise.all(abilitiesData.map(ab=>{
-            let name = handleName(ab.ability.name);
-            let id = getIdFromUrl(ab.ability.url)
-            return new Promise(async (resolve, reject)=>{
-                if(PokemonController.abilities[name] !=undefined) 
-                    return resolve(PokemonController.abilities[name]);
-                var data = await API.getAbility(id);
-                PokemonController.abilities[name] = new Ability(data);
-                resolve(PokemonController.abilities[name]);
-            })
-        }));
+    getPokemonTypes(){
+        return Promise.all(Array.from(Array(18).keys()).slice(1).map(n=>this.api.getType(n)))
+            .then(data=>data.reduce((arr, type)=>{
+                const formatedType = new Type(type);
+                arr[formatedType.name] = formatedType;
+                return arr;
+            }, []))
     }
 
-    static getPokemonNatures(){
-        return API.getNatures().then(data=>{
-            return Promise.all(data.results.map(nature=>API.getNaturesInfo(nature.name)))
-                .then(naturesInfo=>naturesInfo.forEach((obj=>{
-                    let nature = new Nature(obj)
-                    PokemonController.natures[nature.name] = nature;
-                })))
-        });
+    getPokemonAbilities(abilitiesData){
+        return Promise.all(abilitiesData
+            .map(data => this.api.getAbility(data.ability.name)))
+            .then(info => info.map(ability => new Ability(ability)))
     }
-    static set selectedId(id){
-        updatePannel();
-        PokemonController.selectedPokemonId = parseInt(id);
+
+    getPokemonNature(id){
+        if(id<0) return null;
+        return new Promise(async (resolve, reject)=>{
+            var data = await this.api.getNature(id);
+            var nature = new Nature(data);
+            resolve(nature);
+        })
     }
-    static get selectedId(){
-        return PokemonController.selectedPokemonId;
-    }
+
+    getPokemonNatures(){
+        return Promise.all(Array.from(Array(26).keys()).slice(1).map(n=>this.api.getNature(n)))
+            .then(data=>data.reduce((arr, nat)=>{
+                const formatedNature = new Nature(nat);
+                arr[handleName(formatedNature.name)] = formatedNature;
+                return arr;
+            }, []))
+    } 
 }
+
+export default PokemonController.getInstance();

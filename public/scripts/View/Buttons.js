@@ -1,6 +1,6 @@
-import {moveCarousel} from "../main.js";
+import main from "../main.js";
 
-export class ButtonEffects{
+export class Buttons{
     constructor(){
         this.left = $('#left-btn');
         this.right = $('#right-btn');
@@ -19,7 +19,7 @@ export class ButtonEffects{
         if(this.btnClicked) return;
         this.btnClicked=true;
         $("#bottom-btns").addClass('tilt'+direction)
-        moveCarousel(direction)
+        main.carouselController.move(direction)
 
         setTimeout(()=>{
             this.btnClicked = false;

@@ -543,6 +543,12 @@ $fullheight: calc(9rem + 10px);
                 display: block;
                 animation: show 1s ease-in-out;
                 animation-fill-mode: forwards;
+                &>.block{
+                    display: block;
+                    &.ds-none{
+                        display: none;
+                    }
+                }
             }
 
             &.hiding {

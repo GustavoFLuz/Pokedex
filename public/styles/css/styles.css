@@ -460,6 +460,12 @@
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
+#secondary-display .content > div:not(#loading-secondary-display).active > .block {
+  display: block;
+}
+#secondary-display .content > div:not(#loading-secondary-display).active > .block.ds-none {
+  display: none;
+}
 #secondary-display .content > div:not(#loading-secondary-display).hiding {
   display: block;
   -webkit-animation-fill-mode: forwards;
