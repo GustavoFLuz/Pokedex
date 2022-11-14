@@ -735,7 +735,9 @@ $fullheight: calc(9rem + 10px);
             font-size: 1.5em;
         }
     }
-
+    &>div:nth-child(2){
+        font-size: .75em;
+    }
     .pokemon-abilities {
         height: fit-content;
         margin-top: 15px;
@@ -805,7 +807,6 @@ $fullheight: calc(9rem + 10px);
                 justify-content: flex-start;
                 flex-grow: none;
                 transition: .3s;
-
                 &>li {
                     padding: 5px;
                     display: inline-block;

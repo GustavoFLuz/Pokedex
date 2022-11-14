@@ -659,6 +659,9 @@
   color: #FFF;
   font-size: 1.5em;
 }
+#pokemon-info > div:nth-child(2) {
+  font-size: 0.75em;
+}
 #pokemon-info .pokemon-abilities {
   height: -webkit-fit-content;
   height: -moz-fit-content;
