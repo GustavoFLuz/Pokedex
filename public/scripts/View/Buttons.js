@@ -5,6 +5,8 @@ export class Buttons{
         this.left = $('#left-btn');
         this.right = $('#right-btn');
         this.btnClicked = false;
+        this.btnTimeout = null;
+        this.btnClickedTimeout = null;
         this.init();
     }
     
@@ -19,11 +21,9 @@ export class Buttons{
         if(this.btnClicked) return;
         this.btnClicked=true;
         $("#bottom-btns").addClass('tilt'+direction)
-        main.carouselController.move(direction)
-
-        setTimeout(()=>{
-            this.btnClicked = false;
-        }, 500)
+        main.carouselController.move(direction).then(res=>{
+            setTimeout(()=>{this.btnClicked = false;}, 250)
+        })
     }
     buttonRelease(){
         $("#bottom-btns").removeClass('tiltLeft')

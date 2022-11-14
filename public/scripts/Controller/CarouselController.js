@@ -10,7 +10,7 @@ export class CarouselController {
         displayNames.find('input').on('change', event=>this.load(event.target))
     }
     move(direction){
-        this.getNewPokemon(direction).then(pokemon=>{
+        return this.getNewPokemon(direction).then(pokemon=>{
             this.carousel.move(direction, pokemon);
         })
     }
@@ -20,6 +20,9 @@ export class CarouselController {
             let newId = main.selectedId + (after * 3);
             resolve(inRangeId(newId, 0)?PokemonController.getPokemon(newId):null)
         }).then(pokemon=>{
+                (this.pokemonList.map(el=>el?.name).includes(pokemon.name))
+                if(this.pokemonList.map(el=>el?.name).includes(pokemon.name)) 
+                    return this.pokemonList;
                 if(after==1){
                     this.pokemonList.push(pokemon);
                     this.pokemonList.shift()

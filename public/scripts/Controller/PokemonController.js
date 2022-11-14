@@ -50,7 +50,7 @@ class PokemonController{
     }
 
     getPokemonTypes(){
-        return Promise.all(Array.from(Array(18).keys()).slice(1).map(n=>this.api.getType(n)))
+        return Promise.all(Array.from(Array(19).keys()).slice(1).map(n=>this.api.getType(n)))
             .then(data=>data.reduce((arr, type)=>{
                 const formatedType = new Type(type);
                 arr[formatedType.name] = formatedType;
