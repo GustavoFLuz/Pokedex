@@ -381,7 +381,9 @@
   right: 20%;
 }
 #secondary-display #tab-selector {
-  width: 45%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -399,7 +401,7 @@
 }
 #secondary-display #tab-selector li {
   border-radius: 15px 15px 0 0;
-  width: 100%;
+  width: 1.3em;
   height: 2rem;
   padding: 0;
   margin: 0;
@@ -416,7 +418,6 @@
 #secondary-display #tab-selector li#slider {
   background-color: rgba(77, 186, 255, 0.5);
   border: 5px solid #66c4ff;
-  width: 33%;
   position: absolute;
   top: 0;
   left: 0;
@@ -426,10 +427,10 @@
   left: 0;
 }
 #secondary-display #tab-selector li#slider.dislocate2 {
-  left: 33%;
+  left: 1.3em;
 }
 #secondary-display #tab-selector li#slider.dislocate3 {
-  left: 66%;
+  left: 2.6em;
 }
 #secondary-display .content {
   width: 100%;
@@ -530,6 +531,9 @@
   height: 100%;
   width: 100%;
   scroll-snap-align: center;
+}
+#pokemon-info .block > div {
+  padding-top: 1px;
 }
 #pokemon-info .header {
   position: relative;
@@ -900,6 +904,57 @@
 #pokemon-info .pokemon-stats > div:not(.select-nature) .stats-config #iv-ev-input input[type=number]::-webkit-outer-spin-button, #pokemon-info .pokemon-stats > div:not(.select-nature) .stats-config #iv-ev-input input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+#pokemon-info #pokemon-moves {
+  height: 100%;
+}
+#pokemon-info #pokemon-moves h2 {
+  text-align: center;
+  margin: 0.5em;
+}
+#pokemon-info #pokemon-moves ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-height: 80%;
+  overflow-y: scroll;
+  list-style: none;
+  margin: 0;
+  padding: 5px 15px;
+}
+#pokemon-info #pokemon-moves ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1.15em;
+  border-left: 2px solid #006eb3;
+  border-right: 2px solid #006eb3;
+  border-radius: 5px;
+  width: 100%;
+  margin: 5px 0;
+  padding: 0;
+  white-space: nowrap;
+}
+#pokemon-info #pokemon-moves ul li > div {
+  display: inline-block;
+  height: 100%;
+}
+#pokemon-info #pokemon-moves ul li > .level {
+  text-align: end;
+  padding: 0 5px;
+  width: 20%;
+  font-size: 0.8em;
+}
+#pokemon-info #pokemon-moves ul li > .name {
+  width: 50%;
+}
+#pokemon-info #pokemon-moves ul::-webkit-scrollbar {
+  width: 10px;
+  background-color: #33b1ff;
+}
+#pokemon-info #pokemon-moves ul::-webkit-scrollbar-thumb {
+  background-color: #0097f5;
+  border: 1px solid #66c4ff;
+  border-radius: 5px;
 }
 
 .loading-secondary-display {

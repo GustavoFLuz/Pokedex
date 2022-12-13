@@ -12,8 +12,10 @@ export class PannelController {
             var index = this.pannel.dislocate(event)
             if(!index) return;
             this.selectedPannel = index;
-            setTimeout(()=>this.pannel.enableLoading(true), this.pannel.transitionTime)
-            setTimeout(()=>this.update, this.pannel.transitionTime)
+            setTimeout(()=>{
+                this.pannel.enableLoading(true)
+                this.update()
+            }, this.pannel.transitionTime)
         })
     }
     update(){
@@ -22,6 +24,7 @@ export class PannelController {
                 PokemonController.getPokemon(main.selectedId)
                     .then(pokemon=>{
                         this.pannel.renderInfo(pokemon); 
+                        this.pannel.enableLoading(false);
                     })
                 break;
             case 2: 

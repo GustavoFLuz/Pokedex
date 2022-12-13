@@ -1,5 +1,3 @@
-import PokemonController from "../Controller/PokemonController.js";
-
 export default class Stats{
     constructor(basestats){
         this['hp']=                 basestats['hp'];
@@ -27,6 +25,6 @@ export default class Stats{
     getStat(stat, nature, level, ev, iv){
         if(isNaN(ev)) ev=0;
         if(isNaN(iv)) iv=0;
-        return Math.ceil((((((2*this[stat])+iv+Math.floor(ev/4))*level)/100)+5) * nature[stat])
+        return Math.ceil((((((2*this[stat])+iv+Math.floor(ev/4))*level)/100)+5) * (nature?nature[stat]:1))
     }
 }

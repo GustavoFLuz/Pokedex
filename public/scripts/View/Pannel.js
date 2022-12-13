@@ -1,5 +1,3 @@
-import PokemonController from "../Controller/PokemonController.js";
-import Pokemon from "../Models/Pokemon.js";
 import PannelInfo from "./PannelInfo.js";
 export class Pannel {
     constructor() {

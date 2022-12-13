@@ -460,7 +460,7 @@ $fullheight: calc(9rem + 10px);
     right: 20%;
 
     #tab-selector {
-        width: 45%;
+        width: fit-content;
         height: fit-content;
         margin: 0;
         padding: 0;
@@ -478,7 +478,7 @@ $fullheight: calc(9rem + 10px);
 
         li {
             border-radius: 15px 15px 0 0;
-            width: 100%;
+            width: 1.3em;
             height: 2rem;
             padding: 0;
             margin: 0;
@@ -496,7 +496,6 @@ $fullheight: calc(9rem + 10px);
             &#slider {
                 background-color: transparentize($color: lighten($color: $secondaryColor, $amount: 15), $amount: .5);
                 border: 5px solid lighten($color: $secondaryColor, $amount: 20);
-                width: 33%;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -507,11 +506,11 @@ $fullheight: calc(9rem + 10px);
                 }
 
                 &.dislocate2 {
-                    left: 33%;
+                    left: 1.3em;
                 }
 
                 &.dislocate3 {
-                    left: 66%;
+                    left: 2.6em;
                 }
             }
         }
@@ -606,6 +605,9 @@ $fullheight: calc(9rem + 10px);
         height: 100%;
         width: 100%;
         scroll-snap-align: center;
+        &>div{
+            padding-top: 1px;
+        }
     }
 
     .header {
@@ -979,7 +981,64 @@ $fullheight: calc(9rem + 10px);
             }
         }
     }
+    #pokemon-moves{
+        height: 100%;
+        h2{
+            text-align: center;
+            margin: .5em;
+        }
+        ul{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-height: 80%;
+            overflow-y: scroll;
 
+            list-style: none;
+            margin: 0;
+            padding: 5px 15px;
+            
+            li{
+                display: flex;
+                align-items: center;
+
+                font-size: 1.15em;
+                border-left: 2px solid darken($color: $secondaryColor, $amount: 15);
+                border-right: 2px solid darken($color: $secondaryColor, $amount: 15);
+                border-radius: 5px;
+                
+                width: 100%;
+                margin: 5px 0;
+                padding: 0;
+                white-space: nowrap;
+                &>div{
+                    display: inline-block;
+                    height: 100%;
+                }
+                &>.level{
+                    text-align: end;
+                    padding: 0 5px;
+                    width: 20%;
+                    font-size: .8em;
+                }
+                &>.name{
+                    width: 50%;
+                }
+            }
+            
+            
+            &::-webkit-scrollbar {
+                width: 10px;
+                background-color: lighten($color: $secondaryColor, $amount: 10);
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: darken($color: $secondaryColor, $amount: 2);
+                border: 1px solid lighten($color: $secondaryColor, $amount: 20);
+                border-radius: 5px;
+            }
+        }
+    }
 }
 
 .loading-secondary-display {

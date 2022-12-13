@@ -41,5 +41,7 @@ export default class API{
         this.pokedexWrapper.getNature(Array.from(Array(26).keys()).slice(1));
         this.pokedexWrapper.getType(Array.from(Array(18).keys()).slice(1));
     }
-
+    async getMove(id){
+        return this.pokedexWrapper.getMove(id)
+    }
 }
