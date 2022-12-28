@@ -1,13 +1,10 @@
 # Pokedex
-## [Demo](https://pokedex-gustavol.cyclic.app)
-<br>
-Resources obtained from [PokeApi](https://pokeapi.co)
-
-# Interactive Pokedex
 
 A Pokedex from the Pokemon Franchise developed using HTML, SASS and Javascript in conjuction with [PokeAPI](https://pokeapi.co) with the purpose of getting experience and knowledge as a front-end developer
 
 > Warning: this application is a work in process, because of the way it's built it has not been optimized for the best loading speed and memory consumption and has limitations, expect loading times from 10\~15 seconds at start and 3\~5 seconds between pokemon scrolling, any bugs please report
+
+### Check this [demo](https://pokedex-gustavol.cyclic.app)
 
 ## Getting Started
 
