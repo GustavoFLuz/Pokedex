@@ -1,11 +1,12 @@
 import { Pannel } from "../View/Pannel.js";
 import main from "../main.js";
-import PokemonController from "./PokemonController.js";
-export class PannelController {
+import API from "../Api/API.js";
+export default class PannelController {
     constructor() {
         this.pannel = new Pannel();
         this.selectedPannel = 1;
         this.init();
+        this.update();
     }
     init() {
         this.pannel.selector.find('li:not(.slider)').click((event) => {
@@ -21,20 +22,15 @@ export class PannelController {
     update(){
         switch(this.selectedPannel){
             case 1: 
-                PokemonController.getPokemon(main.selectedId)
+                return API.getPokemon(main.selectedId)
                     .then(pokemon=>{
                         this.pannel.renderInfo(pokemon); 
                         this.pannel.enableLoading(false);
                     })
-                break;
             case 2: 
-                this.pannel.renderSearch();
-                this.pannel.enableLoading(false);
-                break;
+                return this.pannel.enableLoading(false);
             case 3:
-                this.pannel.renderList();
-                this.pannel.enableLoading(false);
-                break;
+                return this.pannel.enableLoading(false);
         }
     }
 }

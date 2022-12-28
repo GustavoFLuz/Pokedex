@@ -1,3 +1,4 @@
+import API from "../Api/API.js";
 import PokemonController from "../Controller/PokemonController.js";
 export default class PannelInfo {
     constructor(contentDiv) {
@@ -14,7 +15,7 @@ export default class PannelInfo {
     }
 
     setNature(nature) {
-        return PokemonController.getPokemonNature(nature)
+        return API.getPokemonNature(nature)
             .then(nat => this.nature = nat)
     }
 
@@ -42,7 +43,7 @@ export default class PannelInfo {
                 .removeClass("selectedAbility1 selectedAbility2 selectedAbility3")
                 .addClass("selectedAbility" + event.target.id.slice(-1))
         });
-        PokemonController.getPokemonNatures().then(natures => Object.keys(natures).sort().forEach(key => {
+        API.getPokemonNatures().then(natures => Object.keys(natures).sort().forEach(key => {
             infoDiv.find('.select-nature').append($(`<option value="${natures[key].name}">${natures[key].name}</option>`))
         }))
         $('#level-range').on("input", (event) => { infoDiv.find('.level-show').text("Level " + event.target.value); this.setStats() })
@@ -86,11 +87,11 @@ export default class PannelInfo {
         this.setStats();
 
         //Types
-        PokemonController.getPokemonTypes().then((arr) => {
+        API.getPokemonTypes().then((arr) => {
             infoDiv.find('.pokemon-types').html('')
             pokemon.types.forEach(type => {
                 let typeData = arr[type];
-                infoDiv.find('.pokemon-types').append(`<div class="${pokemon.types.length > 1 ? 'double' : 'single'}"style="background-color: ${typeData.info.color}">${typeData.name}</div>`)
+                infoDiv.find('.pokemon-types').append(`<div class="${pokemon.types.length > 1 ? 'double' : 'single'}"style="background-color: ${typeData.color}">${typeData.name}</div>`)
             })
         })
 
@@ -104,7 +105,7 @@ export default class PannelInfo {
                 case "level-up": imageSrc = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png";break;
                 case "tutor": imageSrc = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rsvp-mail.png";break;
             }
-            $("#pokemon-moves ul").append(`<li><img src="${imageSrc}"><div class="level">${move.level?"Lv "+move.level:''}</div><div class="name">${move.name}</div></li>`)
+            $("#pokemon-moves ul").append(`<li style="background:${move.type.color};"><img src="${imageSrc}"><div class="level">${move.level?"Lv "+move.level:''}</div><div class="name">${move.name}</div></li>`)
         })
 
     }

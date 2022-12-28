@@ -161,7 +161,39 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class=""></div>
+                                    <div class="" id="pokemon-search">
+                                        <div class="block">
+                                            <h2>Search</h2>
+                                            <div class="first-search-block">
+                                                <input type="search" id="name-search" list="nameList"placeholder="Name / Number">
+                                                <select id="gen-search" >
+                                                    <option value="">Gen</option>
+                                                    <option value="1">I</option>
+                                                    <option value="2">II</option>
+                                                    <option value="3">III</option>
+                                                    <option value="4">IV</option>
+                                                    <option value="5">V</option>
+                                                </select>
+                                                <datalist id="nameList"></datalist>
+                                            </div>
+                                            <div class="second-search-block">
+                                                <input type="search" id="type-search1" list="typeList" placeholder="Type 1">
+                                                <input type="search" id="type-search2" list="typeList" placeholder="Type 2">
+                                                <datalist id="typeList"></datalist>
+                                            </div>
+                                            <div >
+                                                <input type="search" id="ability-search" list="abilityList" placeholder="Ability">
+                                                <datalist id="abilityList"></datalist>
+                                            </div>
+                                            <div>
+                                                <input type="search" id="move-search" list="moveList" placeholder="Move">
+                                                <datalist id="moveList"></datalist>
+                                            </div>
+                                            <div class="search-button">
+                                                <button><img src="./assets/svg/filter.svg"/></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="" style="display: none;"></div>
                                 </div>
                             </div>

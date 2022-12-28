@@ -21,7 +21,7 @@ export class Buttons{
         if(this.btnClicked) return;
         this.btnClicked=true;
         $("#bottom-btns").addClass('tilt'+direction)
-        main.carouselController.move(direction).then(res=>{
+        main.pokedex.carouselController.move(direction).then(res=>{
             setTimeout(()=>{this.btnClicked = false;}, 250)
         })
     }

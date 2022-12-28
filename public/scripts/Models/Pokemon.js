@@ -27,7 +27,7 @@ function handleAbilities(abilitiesObj, id) {
         return {
             name: ability.name,
             effect: ability.effect,
-            is_hidden: ability.pokemon.find(pair => pair[0] == id)[1]
+            is_hidden: ability.pokemon.find(pair => pair.id == id).hidden
         }
     })
 }

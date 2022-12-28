@@ -1,7 +1,6 @@
 import main from '../main.js';
 import { Buttons } from '../View/Buttons.js'
 import { inRangeId, emptyImage } from '../Helper/helper.js';
-import PokemonController from '../Controller/PokemonController.js';
 export default class Carousel {
     constructor() {
         this.list = $('#main-display');
@@ -14,7 +13,6 @@ export default class Carousel {
     init(pokemonList) {
         
         this.list.find('li').remove();
-        main.selectedId = pokemonList[2].id;
         pokemonList.forEach((pokemon, index) => {
             this.list.append($(`<li class="displayPokemon${index}"> <img src="${pokemon ? pokemon.sprite.main:emptyImage}"/></li>`))
         })
@@ -38,7 +36,6 @@ export default class Carousel {
         }, 500)
     }
     update(pokemonList){
-        main.selectedId = pokemonList[2].id;
         this.displayLi.each((index, li)=>{
             let img = $(li).find('img')
             let pokemon = pokemonList[index];

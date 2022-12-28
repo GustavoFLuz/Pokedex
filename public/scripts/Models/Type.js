@@ -1,8 +1,7 @@
-import { handleName } from "../Helper/helper.js"
+import { handleName, getPokemonFromList } from "../Helper/helper.js"
 export default class Type{
     constructor(data){
         this.name = null;
-        this.info = null;
         this.process(data);
     }
     process(type){
@@ -11,22 +10,18 @@ export default class Type{
         }
         let rel = type.damage_relations;
         let name = handleName(type.name)
-        let damageDeal = [];
-        rel.double_damage_to    .forEach(type=>handleVariable(damageDeal, type.name, 2));
-        rel.half_damage_to      .forEach(type=>handleVariable(damageDeal, type.name, 0.5));
-        rel.no_damage_to        .forEach(type=>handleVariable(damageDeal, type.name, 0));
-        let damageReceive = [];
-        rel.double_damage_from  .forEach(type=>handleVariable(damageReceive, type.name, 2));
-        rel.half_damage_from    .forEach(type=>handleVariable(damageReceive, type.name, 0.5));
-        rel.no_damage_from      .forEach(type=>handleVariable(damageReceive, type.name, 0));
-        
-        
-        this.name= name;
-        this.info = {
-            color: Type.getColor(name),
-            damageDeal: damageDeal,
-            damageReceive: damageReceive
-        }        
+        this.damageDeal = [];
+        rel.double_damage_to    .forEach(type=>handleVariable(this.damageDeal, type.name, 2));
+        rel.half_damage_to      .forEach(type=>handleVariable(this.damageDeal, type.name, 0.5));
+        rel.no_damage_to        .forEach(type=>handleVariable(this.damageDeal, type.name, 0));
+        this.damageReceive = [];
+        rel.double_damage_from  .forEach(type=>handleVariable(this.damageReceive, type.name, 2));
+        rel.half_damage_from    .forEach(type=>handleVariable(this.damageReceive, type.name, 0.5));
+        rel.no_damage_from      .forEach(type=>handleVariable(this.damageReceive, type.name, 0));
+        this.pokemonPrimary = getPokemonFromList(type.pokemon.filter(el=>el.slot==1).map(el=>el.pokemon))
+        this.pokemonSecondary = getPokemonFromList(type.pokemon.filter(el=>el.slot==2).map(el=>el.pokemon))
+        this.name = name;
+        this.color= Type.getColor(name)
     }
     static getColor(name){
         return {

@@ -1,25 +1,24 @@
+import config from "../config.js"
 export function handleName(string) {
     return string.split(' ')[0].split(/[-]+/).map((part)=>{
         return part.charAt(0).toUpperCase()+ part.slice(1)
     }).join(' ')
 }
-export const minSelectedId = 1;
-export const maxSelectedId = 649;
 export function inRangeId(id, dist){
     id = parseInt(id)
     if(dist!=null){
-        return (id+dist>=minSelectedId && id+dist<=maxSelectedId)
+        return (id+dist>=config.minSelectedId && id+dist<=config.maxSelectedId)
     }
     var range =[];
     for(let i=-2;i<=2;i++){
-        if(id+i>=minSelectedId && id+i<=maxSelectedId) range.push(id+i);
+        if(id+i>=config.minSelectedId && id+i<=config.maxSelectedId) range.push(id+i);
         else range.push(-1)
     }
     return range;
 }
 
 export function getPokemonFromList(list){
-    return list.map(poke=>poke.pokemon.url.split('/').slice(-2)[0]).filter(id=>(id>=minSelectedId && id<=maxSelectedId))
+    return list.map(el=>{return {id:getIdFromUrl(el.url), name:handleName(el.name)}}).filter(el=>(el.id>=config.minSelectedId && el.id<=config.maxSelectedId))
 }
 
 export function getIdFromUrl(url){

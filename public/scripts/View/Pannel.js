@@ -53,11 +53,4 @@ export class Pannel {
     renderInfo(pokemon){
         this.pannelInfo.setPokemon(pokemon)
     }
-
-    renderSearch(){
-
-    }
-    renderList(){
-
-    }
 }
